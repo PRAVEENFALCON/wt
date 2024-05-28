@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 130vh;
+            width:100vw;
+            background-image: url(pmb.webp);
+            
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;}
+        .card2{
+            min-width:300px;
+            min-height: 350px;
+            background: rgba(154, 11, 11, 0.1);
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(16, 15, 15, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            width: 400px;}
+        .padding{
+            width: 95%;
+            padding: 10px;
+            margin-bottom: -1em;
+            border: 1px solid #767a7d;
+            border-radius: 5px;}
+        .hero-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #2a3ed8;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            margin-top: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="head">POKEMON GO</h1><br><h2>Trainer Account</h2>
+        <div class="card2">
+            <form onsubmit="validate(event)">
+                <label for="name">TRAINER NAME</label>
+                <br>
+                <input class="padding" type="text" id="name" required />
+                <br><br><br>
+            
+                <label for="gender">GENDER</label>
+                <br>
+                <input type="radio" id="gender" name="male" required />Male
+                <br>
+                <input type="radio" id="gender" name="female"  />Female
+                <br><br>
+            
+                <label for="dob">DATE OF BIRTH</label>
+                <br>
+                <input class="padding" type="date" id="dob" required/>
+                <br><br><br>
+            
+                <label>Which Pokemon Region are you from :</label><br>
+                                <select class="padding" required>  
+                                    <option selected disabled>SELECT ONE</option> 
+                                    <option>Kanto</option>
+                                    <option>Johto</option>
+                                    <option>Hoenn</option>
+                                    <option>Sinnoh</option>
+                                    <option>Unova</option>
+                                    <option>Kalos</option>
+                                </select><br><br><br>
+                <label for="email">E-MAIL</label>
+                <br>
+                <input class="padding" id="email" required />
+                <br><br><br>
+                            
+                <label for="password">Set The Password</label>
+                <br>
+                <input class="padding" type="password" id="password" required />
+                <br><br>
+                            
+                <label for="confirmPassword">Confirm The Password</label>
+                <br>
+                <input class="padding" type="password" id="confirmPassword" required />
+                <br><br>
+                            
+                <button class="hero-btn" type="submit">Register</button>
+            </form>
+
+            
+        </div>
+    </div>
+    <script>
+        function validate(event){
+            event.preventDefault();
+            
+            let name = document.getElementById('name').value;
+            let dob = document.getElementById('dob').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+
+            let nameRegex = /^[A-Za-z\s]{5,}$/;
+            let passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            let emailRegex = /^[A-Za-z0-9._%+-]+@[a-z]{3,}\.[a-z]{2,3}$/;
+
+            if(!name.match(nameRegex)){
+                window.alert("Enter a Valid Trainer Name");
+                return;
+            }
+
+            if(!email.match(emailRegex)){
+                window.alert("Enter a Valid E-Mail Id");
+                return;
+            }
+
+            if(password !== confirmPassword){
+                window.alert("Passwords do not match");
+                return;
+            }
+
+            if(!password.match(passRegex)){
+                window.alert("Password length must be at least 8 Characters, at least one lowercase letter, at least one uppercase letter, at least one digit, at least one special character");
+                return;
+            }
+            console.log("Form submitted successfully");
+        }
+    </script>
+</body>
+</html>
